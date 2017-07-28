@@ -321,15 +321,18 @@ def get_predictors(vep_fields):
     pred_rank = ['D', 'A', 'T', 'N', 'P', 'B', '.', '']
     def select_worst(pred_value):
         i = len(pred_rank) - 1
-        for pred in pred_value.split("%3B"):
+	#print "pred_value: %s" % pred_value
+        for pred in pred_value.split("&"):
             r = pred_rank.index(pred)
             if r < i:
                 i = r
         return pred_rank[i]
+    rsid = vep_fields["existing_variation"]
     annotations_dict = {
+	'rsid': rsid.replace("&", " ") if rsid != '' else None,
         'polyphen': polyphen_map[select_worst(vep_fields["polyphen2_hvar_pred"])],
-        'sift': sift_map[select_worst(vep_fields["sift_pred"])],
-        'fathmm': fathmm_map[select_worst(vep_fields['fathmm_pred">\n'])],
+        'sift': sift_map[select_worst(vep_fields['sift_pred">\n'])],
+        'fathmm': fathmm_map[select_worst(vep_fields["fathmm_pred"])],
         'muttaster': muttaster_map[select_worst(vep_fields["mutationtaster_pred"])],
         'metasvm': collapse(vep_fields["metasvm_pred"]),
     }

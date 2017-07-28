@@ -9,8 +9,8 @@ from xbrowse import genomeloc
 from xbrowse_server import mall
 from xbrowse_server.mall import get_project_datastore
 
-CADD_VARIANTS = pysam.TabixFile("/mongo/data/reference_data/CADD/whole_genome_SNVs.tsv.gz")
-CADD_INDELS = pysam.TabixFile("/mongo/data/reference_data/CADD/InDels.tsv.gz")
+CADD_VARIANTS = pysam.TabixFile("/data/Software/data/reference_data/CADD/whole_genome_SNVs.tsv.gz")
+CADD_INDELS = pysam.TabixFile("/data/Software/data/reference_data/CADD/InDels.tsv.gz")
 
 def fetch(chrom, pos, ref, alt):
     if len(chrom) > 1:
